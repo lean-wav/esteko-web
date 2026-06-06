@@ -201,9 +201,15 @@ export default function HeroAssembly() {
     gsap.set(orangePointersRef.current, { opacity: 0 });
     gsap.set(separatorGlowsRef.current, { opacity: 0 });
 
+    const isMobile = window.innerWidth < 768;
+    const startXLeft = isMobile ? -20 : -50;
+    const startXRight = isMobile ? 20 : 50;
+    const rightPanelX = isMobile ? 0 : -120;
+    const rightPanelScale = isMobile ? 1.02 : 1.18;
+
     // Side panels start hidden
-    gsap.set(leftPanelRef.current, { opacity: 0, x: -50, scale: 1 });
-    gsap.set(rightPanelRef.current, { opacity: 0, x: 50, scale: 1 });
+    gsap.set(leftPanelRef.current, { opacity: 0, x: startXLeft, scale: 1 });
+    gsap.set(rightPanelRef.current, { opacity: 0, x: startXRight, scale: 1 });
     gsap.set(whyChooseTitleRef.current, { opacity: 0, y: 15, color: "#ffffff" });
     gsap.set(leftLabelRef.current, { opacity: 0, y: 10 });
     gsap.set(metricCard1Ref.current, { opacity: 0, x: -30 });
@@ -427,8 +433,8 @@ export default function HeroAssembly() {
       .to(
         rightPanelRef.current,
         { 
-          x: -120, 
-          scale: 1.18, 
+          x: rightPanelX, 
+          scale: rightPanelScale, 
           duration: 2.5, 
           ease: "power2.inOut" 
         },
@@ -555,7 +561,7 @@ export default function HeroAssembly() {
           {/* LEFT PANEL: WhyChooseUs metrics */}
           <div
             ref={leftPanelRef}
-            className="hidden md:flex w-[25%] flex-col justify-center text-left space-y-6 z-20 pointer-events-auto"
+            className="flex flex-col justify-center text-left space-y-4 md:space-y-6 z-20 pointer-events-auto w-full md:w-[25%] md:relative absolute top-[18%] md:top-auto left-0 md:left-auto px-6 md:px-0"
           >
             <span ref={leftLabelRef} className="font-mono text-[10px] text-brand-gold tracking-widest uppercase">
               {"// MEMORIA DESCRIPTIVA GENERAL"}
@@ -614,7 +620,7 @@ export default function HeroAssembly() {
           </div>
 
           {/* CENTER SVG CONTAINER — High-Fidelity Architectural Blueprint */}
-          <div className="w-full md:w-[48%] h-[55vh] md:h-[65vh] flex items-center justify-center relative mx-auto mt-6 md:mt-0">
+          <div className="w-full md:w-[48%] h-[35vh] md:h-[65vh] flex items-center justify-center relative mx-auto mt-6 md:mt-0">
             <svg
               ref={svgRef}
               viewBox="0 0 1200 900"
@@ -1492,7 +1498,7 @@ export default function HeroAssembly() {
           {/* RIGHT PANEL: WhyChooseUs description */}
           <div
             ref={rightPanelRef}
-            className="hidden md:flex w-[25%] flex-col justify-center text-left space-y-6 z-20 pointer-events-auto"
+            className="flex flex-col justify-center text-left space-y-4 md:space-y-6 z-20 pointer-events-auto w-full md:w-[25%] md:relative absolute bottom-[8%] md:bottom-auto left-0 md:left-auto px-6 md:px-0"
           >
             <span className="font-mono text-[10px] text-brand-gold tracking-widest uppercase">
               {"// CONTROL Y NORMATIVA DE DISEÑO"}
