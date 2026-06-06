@@ -483,22 +483,14 @@ export default function ServicesGrid() {
               {service.videoUrl && (
                 <video
                   src={service.videoUrl}
+                  autoPlay
                   loop
                   muted
                   playsInline
-                  preload="metadata"
+                  preload="auto"
                   className={`absolute inset-0 w-full h-full object-cover pointer-events-none transition-all duration-700 ease-out z-0 ${
                     hoveredCardId === service.id ? "opacity-[0.18] scale-100 filter brightness-[0.6]" : "opacity-0 scale-105"
                   }`}
-                  ref={(el) => {
-                    if (el) {
-                      if (hoveredCardId === service.id) {
-                        el.play().catch(() => {});
-                      } else {
-                        el.pause();
-                      }
-                    }
-                  }}
                 />
               )}
 
